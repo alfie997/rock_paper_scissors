@@ -23,6 +23,7 @@ function getHumanChoice() {
         return choice;
     } else {
         alert("Not one of the choices");
+        return getHumanChoice();
     }
 }
 // console.log(getHumanChoice());
