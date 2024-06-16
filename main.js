@@ -1,8 +1,10 @@
-console.log("Hello World");
 
 const rock = document.querySelector(".rock");
 const paper = document.querySelector(".paper");
 const scissors = document.querySelector(".scissors");
+
+const results = document.querySelector(".results");
+
 
 function getComputerChoice() {
     let number = Math.floor(Math.random() * 3) + 1;
@@ -23,36 +25,46 @@ let computerScore = 0;
 let round = 1;
 
 function playRound(humanChoice, computerChoice) {
-    console.log(`Round ${round}`);
+    const game = document.createElement("p");
+    const score = document.createElement("p");
+    const result = document.createElement("p");
 
     if ((humanChoice == 'rock' && computerChoice == 'rock') ||
         (humanChoice == 'paper' && computerChoice == 'paper') ||
         (humanChoice == 'scissors' && computerChoice == 'scissors')) {
-            console.log(`You both picked ${humanChoice}. It's a draw!`);
+            game.textContent = `You both picked ${humanChoice}. It's a draw!`;
+            results.appendChild(game);
 
     } else if ((humanChoice == 'rock' && computerChoice == 'scissors') ||
         (humanChoice == 'paper' && computerChoice == 'rock') ||
         (humanChoice == 'scissors' && computerChoice == 'paper')) {
-            console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+            game.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
+            results.appendChild(game);
             humanScore++;
 
     } else if ((humanChoice == 'rock' && computerChoice == 'paper') ||
         (humanChoice == 'paper' && computerChoice == 'scissors') ||
         (humanChoice == 'scissors' && computerChoice == 'rock')) {
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+            game.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
+            results.appendChild(game);
             computerScore++;
     }
-    console.log(`Player score ${humanScore}`);
-    console.log(`PC score ${computerScore}`);
+    score.innerText = `Player score ${humanScore}
+                        PC score ${computerScore}`;
+    results.appendChild(score);
+
     round++;
 
     if (round == 6) {
         if (humanScore > computerScore) {
-            console.log("Player wins!");
+            result.textContent = "Player wins!";
+            results.appendChild(result);
         } else if (humanScore < computerScore) {
-            console.log("PC wins!");
+            result.textContent = "PC wins!";
+            results.appendChild(result);
         } else if (humanScore == computerScore) {
-            console.log("Neither wins.")
+            result.textContent = "Neither wins.";
+            results.appendChild(result);
         }
     }
 }
